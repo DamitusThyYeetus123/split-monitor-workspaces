@@ -251,9 +251,9 @@ APICALL EXPORT PLUGIN_DESCRIPTION_INFO PLUGIN_INIT(HANDLE handle)
 
     HyprlandAPI::addNotification(PHANDLE, "[split-monitor-workspaces] Initialized successfully!", s_pluginColor, 5000);
 
-    e_monitorAddedHandle = HyprlandAPI::registerCallbackDynamic(&*PHANDLE, "monitorAdded", refreshMapping);
-    e_monitorRemovedHandle = HyprlandAPI::registerCallbackDynamic(&*PHANDLE, "monitorRemoved", refreshMapping);
-    e_configReloadedHandle = HyprlandAPI::registerCallbackDynamic(&*PHANDLE, "configReloaded", configReloadedCallback);
+    e_monitorAddedHandle = HyprlandAPI::registerCallbackDynamic(PHANDLE, "monitorAdded", refreshMapping).get();
+    e_monitorRemovedHandle = HyprlandAPI::registerCallbackDynamic(PHANDLE, "monitorRemoved", refreshMapping).get();
+    e_configReloadedHandle = HyprlandAPI::registerCallbackDynamic(PHANDLE, "configReloaded", configReloadedCallback).get();
 
     return {"split-monitor-workspaces", "Split monitor workspace namespaces", "Duckonaut", "1.1.0"};
 }
